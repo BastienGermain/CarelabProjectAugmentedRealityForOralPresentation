@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Addition to the original OpenPose plugin
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +10,9 @@ public class BehaviourTracker : MonoBehaviour
     private GameObject clintonBox;
     private Text armsCrossedText;
     private Text handsInsideText;
+    private Text shouldersAlignedText;
+    private Color black = new Color(0, 0, 0, 0.7f);
+    private Color red = new Color(0.8f, 0, 0, 0.7f);
 
     public void ArmsCrossed()
     {
@@ -31,10 +36,12 @@ public class BehaviourTracker : MonoBehaviour
             if (rElbowlWristDistance < 0.7 * shoulderDistance && lElbowrWristDistance < 0.7 * shoulderDistance)
             {
                 armsCrossedText.text = "Arms crossed";
+                armsCrossedText.color = red;
             }
             else
             {
                 armsCrossedText.text = "Arms not crossed";
+                armsCrossedText.color = black;
             }
         }
     }
@@ -60,6 +67,10 @@ public class BehaviourTracker : MonoBehaviour
                 lHip.x = lShoulder.x + scaleFactor;
                 rShoulder.x -= scaleFactor;
                 lShoulder.x += scaleFactor;
+
+                // reduce box height at base
+                rHip.y -= scaleFactor;
+                lHip.y -= scaleFactor;
 
                 Vector2[] points = new Vector2[]
                 {
@@ -95,23 +106,47 @@ public class BehaviourTracker : MonoBehaviour
             if (clintonBox.GetComponent<ClintonBox>().Contains(lHand) && clintonBox.GetComponent<ClintonBox>().Contains(rHand))
             {
                 handsInsideText.text = "Hands inside";
+                handsInsideText.color = black;
             }
             else
             {
                 handsInsideText.text = "Hands not inside";
+                handsInsideText.color = red;
             }
         }
     }
+
+    // Check if shoulders are aligned horizontally and nose, neck and middle hip vertically
+    public void StraightPosture()
+    {
+        if (GameObject.Find("0_Nose") && GameObject.Find("1_Neck") && GameObject.Find("8_MidHip"))
+        {
+            Vector2 rShoulder = GameObject.Find("2_RShoulder").GetComponent<RectTransform>().localPosition;
+            Vector2 lShoulder = GameObject.Find("5_LShoulder").GetComponent<RectTransform>().localPosition;
+            Vector2 nose = GameObject.Find("0_Nose").GetComponent<RectTransform>().localPosition;
+            Vector2 neck = GameObject.Find("1_Neck").GetComponent<RectTransform>().localPosition;
+            Vector2 midHip = GameObject.Find("8_MidHip").GetComponent<RectTransform>().localPosition;
+
+            float shoulderDistance = Vector2.Distance(rShoulder, lShoulder);
+
+            if (Math.Abs(rShoulder.y - lShoulder.y) > shoulderDistance * 0.1) {
+                shouldersAlignedText.text = "Shoulders not aligned";
+                shouldersAlignedText.color = red;
+            } 
+            else
+            {
+                shouldersAlignedText.text = "Shoulders aligned";
+                shouldersAlignedText.color = black;
+            }
+        }        
+    } 
 
     void Start()
     {
         clintonBox = GameObject.Find("Clinton Box");
         armsCrossedText = GameObject.Find("ArmsCrossed").GetComponent<Text>();
         handsInsideText = GameObject.Find("HandsInside").GetComponent<Text>();
+        shouldersAlignedText = GameObject.Find("ShouldersAligned").GetComponent<Text>();
     }
 
-    void Update()
-    {
-
-    }
 }

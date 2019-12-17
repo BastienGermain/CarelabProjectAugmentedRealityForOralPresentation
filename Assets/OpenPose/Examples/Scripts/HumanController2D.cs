@@ -42,6 +42,7 @@ namespace OpenPose.Example {
             {
                 behaviourTracker.UpdateClintonBox();
                 behaviourTracker.ArmsCrossed();
+                behaviourTracker.StraightPosture();
             }            
         }
 
