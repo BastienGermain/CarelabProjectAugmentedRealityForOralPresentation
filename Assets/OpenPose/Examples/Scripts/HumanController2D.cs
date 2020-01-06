@@ -31,7 +31,7 @@ namespace OpenPose.Example {
         // Addition to the original OpenPose plugin
         private BehaviourTracker behaviourTracker;
 
-        public void DrawHuman(ref OPDatum datum, int bodyIndex, float scoreThres = 0){
+        public void DrawHuman(ref OPDatum datum, int bodyIndex, float scoreThres = 0) {
             DrawBody(ref datum, bodyIndex, scoreThres);
             DrawHand(ref datum, bodyIndex, scoreThres);
             DrawFace(ref datum, bodyIndex, scoreThres);
@@ -46,7 +46,7 @@ namespace OpenPose.Example {
             }            
         }
 
-        private void DrawBody(ref OPDatum datum, int bodyIndex, float scoreThres){
+        private void DrawBody(ref OPDatum datum, int bodyIndex, float scoreThres) {
             if (datum.poseKeypoints == null || bodyIndex >= datum.poseKeypoints.GetSize(0)) {
                 PoseParent.gameObject.SetActive(false);
                 return;
@@ -73,7 +73,7 @@ namespace OpenPose.Example {
 
         private void DrawHand(ref OPDatum datum, int bodyIndex, float scoreThres) {
             // Left
-            if (datum.handKeypoints == null || bodyIndex >= datum.handKeypoints.left.GetSize(0)){
+            if (datum.handKeypoints == null || bodyIndex >= datum.handKeypoints.left.GetSize(0)) {
                 LHandParent.gameObject.SetActive(false);
             } else {
                 LHandParent.gameObject.SetActive(true);
@@ -94,7 +94,7 @@ namespace OpenPose.Example {
                 }
             }
             // Right
-            if (datum.handKeypoints == null || bodyIndex >= datum.handKeypoints.right.GetSize(0)){
+            if (datum.handKeypoints == null || bodyIndex >= datum.handKeypoints.right.GetSize(0)) {
                 RHandParent.gameObject.SetActive(false);
             } else {
                 RHandParent.gameObject.SetActive(true);
@@ -116,7 +116,7 @@ namespace OpenPose.Example {
             }
         }
 
-        private void DrawFace(ref OPDatum datum, int bodyIndex, float scoreThres){
+        private void DrawFace(ref OPDatum datum, int bodyIndex, float scoreThres) {
             // Face
             if (datum.faceKeypoints == null || bodyIndex >= datum.faceKeypoints.GetSize(0)) {
                 FaceParent.gameObject.SetActive(false);
@@ -142,9 +142,9 @@ namespace OpenPose.Example {
             }
         }
 
-        private void DrawRectangles(ref OPDatum datum, int bodyIndex){
+        private void DrawRectangles(ref OPDatum datum, int bodyIndex) {
             // Hand rect
-            if (datum.handRectangles == null || bodyIndex >= datum.handRectangles.Count){
+            if (datum.handRectangles == null || bodyIndex >= datum.handRectangles.Count) {
                 LHandRectangle.gameObject.SetActive(false);
                 RHandRectangle.gameObject.SetActive(false);
             } else {
@@ -160,7 +160,7 @@ namespace OpenPose.Example {
             }
 
             // Face rect
-            if (datum.faceRectangles == null || bodyIndex >= datum.faceRectangles.Count){
+            if (datum.faceRectangles == null || bodyIndex >= datum.faceRectangles.Count) {
                 FaceRectangle.gameObject.SetActive(false);
             } else {
                 FaceRectangle.gameObject.SetActive(true);
