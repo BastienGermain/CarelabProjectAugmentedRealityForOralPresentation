@@ -8,8 +8,12 @@ Unity version 2018.4.8f
 
 ### Installation 
 
-Follow [official documentation](https://github.com/CMU-Perceptual-Computing-Lab/openpose_unity_plugin/blob/master/doc/installation.md)
+Follow [official documentation](https://github.com/CMU-Perceptual-Computing-Lab/openpose_unity_plugin/blob/master/doc/installation.md) to install OpenPose plugin for Unity
+
+### Communication between Detection part and Simulation part
+
+Communication is made through OSC protocol. IP address of receiver can be updated in the BehaviourTracker script (line 172)
 
 ## Simulation
 
-[CarelabProjectAugmentedRealityForOralPresentationSimulation](https://github.com/BastienGermain/CarelabProjectAugmentedRealityForOralPresentationSimulation)
+See [CarelabProjectAugmentedRealityForOralPresentationSimulation](https://github.com/BastienGermain/CarelabProjectAugmentedRealityForOralPresentationSimulation)
