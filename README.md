@@ -6,6 +6,10 @@
 
 Unity version 2018.4.8f
 
+### Installation 
+
+Follow [official documentation](https://github.com/CMU-Perceptual-Computing-Lab/openpose_unity_plugin/blob/master/doc/installation.md)
+
 ## Simulation
 
 [CarelabProjectAugmentedRealityForOralPresentationSimulation](https://github.com/BastienGermain/CarelabProjectAugmentedRealityForOralPresentationSimulation)
