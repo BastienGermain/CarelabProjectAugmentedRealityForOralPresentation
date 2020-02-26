@@ -12,7 +12,7 @@ Follow [official documentation](https://github.com/CMU-Perceptual-Computing-Lab/
 
 ### Communication between Detection part and Simulation part
 
-Communication is made through OSC protocol. IP address of receiver can be updated in the BehaviourTracker script (line 172)
+Communication is made through OSC protocol. IP address of receiver can be updated in the [BehaviourTracker.cs](https://github.com/BastienGermain/CarelabProjectAugmentedRealityForOralPresentation/blob/master/Assets/Scripts/BehaviourTracker.cs) script (line 172)
 
 ## Simulation
 
