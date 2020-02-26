@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+// Class used to get triangles indices (for the clinton box drawing)
+
 public class Triangulator
 {
     private List<Vector2> m_points = new List<Vector2>();

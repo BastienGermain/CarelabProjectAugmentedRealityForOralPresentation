@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using OscJack;
 
+// Class to check postures and send data to OscReceiver
+
 public class BehaviourTracker : MonoBehaviour
 {
     public bool isArmsCrossed = false;
@@ -170,11 +172,8 @@ public class BehaviourTracker : MonoBehaviour
     {
         // IP address, port number
         var client = new OscClient("163.221.174.235", 9100);
-        //var client = new OscClient("127.0.0.1", 9100);
-
 
         client.Send(address, value);
-
 
         // Terminate the client.
         client.Dispose();
