@@ -1056,13 +1056,14 @@ GameObject:
   - component: {fileID: 391948443}
   - component: {fileID: 391948446}
   - component: {fileID: 391948445}
+  - component: {fileID: 391948447}
   m_Layer: 0
   m_Name: Sender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &391948443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,7 +1071,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391948442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e43cc78b62f2184d8bebe41bd574f9e, type: 3}
   m_Name: 
@@ -1102,17 +1103,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391948442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e43cc78b62f2184d8bebe41bd574f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ipAddress: 163.221.174.235
+  _ipAddress: 127.0.0.1
   _udpPort: 9000
   _oscAddress: /shouldersText
   _dataSource: {fileID: 1309668655}
   _propertyName: text
-  _keepSending: 0
+  _keepSending: 1
 --- !u!114 &391948446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1120,7 +1121,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391948442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e43cc78b62f2184d8bebe41bd574f9e, type: 3}
   m_Name: 
@@ -1130,6 +1131,24 @@ MonoBehaviour:
   _oscAddress: /armsText
   _dataSource: {fileID: 229882169}
   _propertyName: text
+  _keepSending: 0
+--- !u!114 &391948447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391948442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e43cc78b62f2184d8bebe41bd574f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ipAddress: 127.0.0.1
+  _udpPort: 9100
+  _oscAddress: /test
+  _dataSource: {fileID: 487023435}
+  _propertyName: tag
   _keepSending: 0
 --- !u!1 &441296455
 GameObject:
@@ -1373,6 +1392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cea91b8a9b760429dddb180bf45f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isArmsCrossed: 0
+  isHandsInside: 0
+  isShouldersAligned: 1
 --- !u!4 &487023436
 Transform:
   m_ObjectHideFlags: 0

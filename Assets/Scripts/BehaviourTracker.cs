@@ -4,9 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using OscJack;
 
 public class BehaviourTracker : MonoBehaviour
 {
+    public bool isArmsCrossed = false;
+    public bool isHandsInside = false;
+    public bool isShouldersAligned = true;
+
     private GameObject clintonBox;
     private Text armsCrossedText;
     private Text handsInsideText;
@@ -37,11 +42,15 @@ public class BehaviourTracker : MonoBehaviour
             {
                 armsCrossedText.text = "Arms crossed";
                 armsCrossedText.color = red;
+                isArmsCrossed = true;
+                SendOSC(1, "/arms");
             }
             else
             {
                 armsCrossedText.text = "Arms not crossed";
                 armsCrossedText.color = black;
+                isArmsCrossed = false;
+                SendOSC(0, "/arms");
             }
         }
     }
@@ -107,11 +116,15 @@ public class BehaviourTracker : MonoBehaviour
             {
                 handsInsideText.text = "Hands inside";
                 handsInsideText.color = black;
+                isHandsInside = true;
+                SendOSC(1, "/hands");
             }
             else
             {
                 handsInsideText.text = "Hands not inside";
                 handsInsideText.color = red;
+                isHandsInside = false;
+                SendOSC(0, "/hands");
             }
         }
     }
@@ -132,11 +145,15 @@ public class BehaviourTracker : MonoBehaviour
             if (Math.Abs(rShoulder.y - lShoulder.y) > shoulderDistance * 0.1) {
                 shouldersAlignedText.text = "Shoulders not aligned";
                 shouldersAlignedText.color = red;
-            } 
+                isShouldersAligned = false;
+                SendOSC(0, "/shoulders");
+            }
             else
             {
                 shouldersAlignedText.text = "Shoulders aligned";
                 shouldersAlignedText.color = black;
+                isShouldersAligned = true;
+                SendOSC(1, "/shoulders");
             }
         }        
     } 
@@ -147,6 +164,20 @@ public class BehaviourTracker : MonoBehaviour
         armsCrossedText = GameObject.Find("ArmsCrossed").GetComponent<Text>();
         handsInsideText = GameObject.Find("HandsInside").GetComponent<Text>();
         shouldersAlignedText = GameObject.Find("ShouldersAligned").GetComponent<Text>();
+    }
+
+    private void SendOSC(int value, string address)
+    {
+        // IP address, port number
+        var client = new OscClient("163.221.174.235", 9100);
+        //var client = new OscClient("127.0.0.1", 9100);
+
+
+        client.Send(address, value);
+
+
+        // Terminate the client.
+        client.Dispose();
     }
 
 }
